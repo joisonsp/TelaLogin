@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Página de Login</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+
+<!------ Include the above in your HEAD tag ---------->
+    <body>
+        <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+
+            <!-- Icon -->
+            <div class="fadeIn first">
+            <img src="img/user.png" id="icon" alt="User Icon" />
+            </div>
+
+            <!-- Login Form -->
+            
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="digite seu login">
+            <input type="password" id="senha" class="fadeIn third" name="senha" placeholder="insira sua senha">
+            <input type="submit" class="fadeIn fourth" value="Log In" onclick="fazerLogin()">
+            
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+            <a class="underlineHover" href="#">Esqueceu a senha?</a>
+            </div>
+
+        </div>
+        </div>
+    </body>
+</html>
+
+<script>
+    async function fazerLogin(){
+       //alert($("#login").val())
+       var obj={}
+       obj.user=$("#login").val()
+       obj.pwd=$("#senha").val()
+        //$.post("localhost:3000/login", obj, function(Data){
+        //    alert(Data)
+        //},"json")
+        
+        console.log(obj)
+        
+        const response = await fetch('http://localhost:3000/login', {
+            headers: {
+                "Accept":"application/json",
+                "Content-Type": "application/json"
+            },
+            method: 'post',
+            body: JSON.stringify(obj)
+        })
+    }
+
+</script>
